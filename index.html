@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TempTrend | Home🔆</title>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: "Poppins", sans-serif;
+}
+.weather-logo{
+    height: 50px;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background: #333; */
+    padding: 15px 30px;
+}
+.navbar .logo {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap:5px;
+}
+.navbar ul {
+    list-style: none;
+    display: flex;
+}
+.navbar ul li {
+    margin: 0 15px;
+}
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: 0.3s ease;
+}
+.navbar ul li a:hover {
+    color: #e68a00;
+    transition: 0.3s ease;
+    transform: scale(1.7);
+}
+.nav-links a:hover::after {
+    width: 100%;
+}
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+}
+.nav-links li {
+    position: relative;
+}
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    padding: 10px 0;
+    position: relative;
+    transition: color 0.3s ease-in-out;
+}
+/* Underline effect */
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -1px;  /* Adjust distance of underline */
+    width: 0;
+    height: 3px;
+    background: white;
+    transition: all 0.3s ease-in-out;
+    transform: translateX(-50%);
+}
+/* Expand underline on hover */
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* main section stylings*/
+main {
+    padding: 20px;
+}
+.main-headings{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.main-headings h2{
+    font-size: 2.5rem;
+    color: white;
+}
+.main-headings h2 span{
+    color: #f08228;
+}
+.main-headings p{
+    color: white;
+}
+.background-clip{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+.temperature-logo{
+    height: 40px;
+
+}
+.weather-widget div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+}
+.weather-widget {
+    backdrop-filter: blur(4px);
+    padding: 15px ;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    width: 650px;
+    margin: 50px auto;
+    text-align: center;
+    color:white;
+    font-size: 1.5rem;
+}
+.description{
+    color:#5f5d5d;
+    text-align: center;
+}
+
+.typewriter {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid orange; /* Blinking cursor */
+    width: 0;
+    font-size: 36px;
+    font-weight: bold;
+    color: #fff;
+    animation: typing 5s steps(40, end) forwards, blink 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 46%; }
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+	</style>
+</head>
+<body>
+	<!-- Nav bar  starts-->
+    <nav class="navbar">
+        <a href="#" class="logo">
+			<img src="sun.png" alt="" class="weather-logo"><p>TempTrend.</p></a>
+
+			<ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hourly.html">Hourly</a></li>
+            <li><a href="weekly.html">Weekly</a></li>
+            <li><a href="about.html">About</a></li>
+			<li><a href="contact.html">Contact</a></li>
+        </ul>
+	</nav>
+	<!-- Nav bar ends -->
+	
+<!-- main section starts -->
+<main>
+	<video autoplay loop muted plays-inline class="background-clip">
+		<source src="home-baground.mp4" type="video/mp4">
+	</video>
+	<div class="main-headings">
+		<h2  class="typewriter">Welcome to the <span> TempTrend!</span></h2>
+		<p>Get real-time weather updates and forecasts for your location.</p></div>
+
+		<section class="weather-widget">
+         <div> <img src="icons8-weather-48.png" alt="" class="temperature-logo">  <h3> Current Weather</h3></div>
+
+            <p><strong>Location:</strong> <span id="city">Loading...</span></p>
+            <p><strong>Temperature:</strong> <span id="temperature">--°C</span></p>
+            <p><strong>Condition:</strong> <span id="condition">--</span></p>
+        </section>
+		<p class="description">Stay ahead of the weather with TempTrend, your go-to platform for real-time weather updates and forecasts. Whether you’re planning your day or preparing for the week ahead, our intuitive dashboard provides accurate temperature readings, current conditions, and a detailed outlook for your location. With a sleek design and easy-to-read format, TempTrend ensures you stay informed, no matter the weather. Start exploring now and never get caught off guard by unexpected changes! 🌦️✨</p>
+    </main>
+ <!-- main section ends -->
+
+ <!-- javascript starts -->
+  <script>
+	const apiKey = "f00c38e0279b7bc85480c3fe775d518c";  // Replace with your OpenWeatherMap API key
+const city = "Chebrolu"; // Default city (Change as needed)
+const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+
+async function fetchWeather() {
+    try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+        // Extract weather details
+        document.getElementById("city").innerText = data.name;
+        document.getElementById("temperature").innerText = `${data.main.temp}°C`;
+        document.getElementById("condition").innerText = data.weather[0].description;
+    } catch (error) {
+        console.error("Error fetching weather data:", error);
+        document.getElementById("city").innerText = "Error loading data";
+    }
+}
+
+// Fetch weather when the page loads
+fetchWeather();
+document.addEventListener("DOMContentLoaded", function() {
+        const heading = document.querySelector(".typewriter");
+        heading.style.width = "50%";
+    });
+  </script>
+  <!-- java script ends -->
+</body>
+</html>

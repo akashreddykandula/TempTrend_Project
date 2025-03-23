@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us| TempTrend🔆</title>
+    <style>
+          	@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        body {
+            font-family: "Poppins", sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            /* padding: 20px; */
+            margin: 0;
+            padding: 0
+            ;
+        }
+        .weather-logo{
+    height: 50px;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background: #333; */
+    padding: 1px 10px;
+}
+.navbar .logo {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap:5px;
+}
+.navbar ul {
+    list-style: none;
+    display: flex;
+}
+.navbar ul li {
+    margin: 0 15px;
+}
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: 0.3s;
+}
+.navbar ul li a:hover {
+    color: #f4a261;
+}
+.nav-links a:hover::after {
+    width: 100%;
+}
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+}
+.nav-links li {
+    position: relative;
+    color: white;
+   
+}
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    padding: 10px 0;
+    position: relative;
+    transition: color 0.3s ease-in-out;
+}
+/* Underline effect */
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -1px;  /* Adjust distance of underline */
+    width: 0;
+    height: 3px;
+    background: white;
+    transition: all 0.3s ease-in-out;
+    transform: translateX(-50%);
+}
+/* Expand underline on hover */
+.nav-links a:hover::after {
+    width: 100%;}
+        .container {
+            max-width: 1300px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            color: #333;
+        }
+        h2, h3 {
+            color: #ff9800;
+        }
+        p {
+            color: #e9e2e2;
+            line-height: 1.6;
+            justify-self: center;
+            align-items: center;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+         .container .lists {
+          
+            color: #e9e2e2;
+            padding: 5.5px;
+            margin: 2px;
+            border-radius: 5px;
+           
+        }
+        .howitworkspara{
+            color: #333;
+        }
+        .team-section {
+            margin-top: 20px;
+            padding: 15px;
+            backdrop-filter: blur(10px);
+            color: white;
+            border-radius: 5px;
+        }
+        .contact {
+            margin-top: 20px;
+            padding: 15px;
+            background: #4caf50;
+            color: white;
+            border-radius: 5px;
+        }
+        .background-clip{
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+        .background-clip2{
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            top: 100vh;
+        }
+        .footer {
+            margin-top: 80px;
+            padding: 14px ;
+            backdrop-filter: blur(10px);
+            color: white;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .footer a {
+            color: #ffeb3b;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .footer .footer-links {
+            margin-top: 10px;
+        }
+        .footer .footer-social {
+            margin-top: 10px;
+        }
+        .footer .footer-social a {
+            margin: 0 10px;
+            display: inline-block;
+        }
+        h4{
+            color: #056121;
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+      <!-- Nav bar  starts-->
+      <nav class="navbar">
+        <a href="#" class="logo">
+			<img src="sun.png" alt="" class="weather-logo"><p>TempTrend</p></a>
+
+			<ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hourly.html">Hourly</a></li>
+            <li><a href="weekly.html">Weekly</a></li>
+            <li><a href="about.html">About</a></li>
+			<li><a href="contact.html">Contact</a></li>
+        </ul>
+	</nav>
+	<!-- Nav bar ends -->
+    <video autoplay loop muted plays-inline class="background-clip">
+		<source src="home-baground.mp4" type="video/mp4">
+	</video>
+    <video autoplay loop muted plays-inline class="background-clip2">
+		<source src="home-baground.mp4" type="video/mp4">
+	</video>
+    <div class="container">
+        <h2>About Our Weather App</h2>
+        <p>Welcome to our Weather Forecast application! Our goal is to provide accurate, real-time, and up-to-date weather information for cities around the world. We aim to help users plan their daily activities, whether it's a sunny day for outdoor events or a stormy day that requires extra precautions.</p>
+        <h2>Our Mission</h2>
+        <p>Our mission is to make weather forecasting accessible and reliable for everyone. We utilize advanced technology and data sources to deliver real-time weather updates with high accuracy. Whether you are a traveler, an outdoor enthusiast, or simply planning your day, our app ensures you stay ahead of the weather.</p>
+        <h2>Features of Our App</h2>
+        <ul>
+            <li class="lists">1) Live weather updates with real-time data</li>
+            <li class="lists">2) Hourly weather forecast for precise planning</li>
+            <li class="lists">3) 7-day weather outlook with trends and predictions</li>
+            <li class="lists">4) Interactive weather icons for easy visualization</li>
+            <li class="lists">5) Reliable data sourced from OpenWeather API</li> 
+        </ul>
+        <h2>How It Works</h2>
+        <p class="howitworkspara">Our application collects weather data from OpenWeather's API, ensuring accurate and real-time updates. When a user enters a city name, the system fetches the relevant data and displays the temperature, weather conditions, and forecast trends. We also provide interactive icons to visually represent weather conditions.</p>
+        
+        <div class="team-section">
+            <h2>Meet Our Team</h2>
+            <p>Our dedicated team of developers and weather enthusiasts work tirelessly to provide the best experience for users. We continuously update our system to improve accuracy and enhance user experience.</p>
+            <h4>Akash Reddy - Lead Developer</h4>
+            <p>Akash is responsible for building the frontend and backend of the application, ensuring smooth user experience and data integration.</p>
+            <h4>Gokul Santhosh - UI/UX Designer</h4>
+            <p>Gokul Santhosh focuses on making the application visually appealing and user-friendly with an intuitive design.</p>
+            <h4>Vyshnavi - Backend Engineer</h4>
+            <p>Vyshnavi works on API integrations and database management to ensure accurate real-time weather updates.</p>
+            <h4>Dhavalika - Data Analyst</h4>
+            <p>Dhavalika analyzes weather trends and optimizes the data processing for better accuracy and insights.</p>
+            <p>Thank you for using our app. Stay informed, stay safe, and plan your days with confidence!</p>
+        </div>
+        <div class="footer">
+            <p>&copy; 2025 TempTrend. All rights reserved. Rv Institute Of Technology</p>
+            <div class="footer-links">
+                <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Contact Us</a></p>
+            </div>
+            <div class="footer-social">
+                <p>Follow us on:</p>
+                <a href="#"><img src="fb.png" alt="Facebook" width="30"></a>
+                <a href="#"><img src="twitter.png" alt="Twitter" width="30"></a>
+                <a href="#"><img src="instagram.png" alt="Instagram" width="30"></a>
+            </div>
+            <p>WeatherApp is your trusted source for real-time weather updates. Stay ahead of the forecast and plan your day with confidence!</p>
+        </div>
+     
+    </div>
+</body>
+</html>

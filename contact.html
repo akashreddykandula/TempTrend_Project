@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | TempTrend🔆</title>
+    <style>
+       @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        body {
+            font-family: "Poppins", sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            /* padding: 20px; */
+            margin: 0;
+            padding: 0
+            ;
+        }
+        .weather-logo{
+    height: 50px;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background: #333; */
+    padding: 1px 10px;
+}
+.navbar .logo {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap:5px;
+}
+.navbar ul {
+    list-style: none;
+    display: flex;
+}
+.navbar ul li {
+    margin: 0 15px;
+}
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: 0.3s;
+}
+.navbar ul li a:hover {
+    color: #f4a261;
+}
+.nav-links a:hover::after {
+    width: 100%;
+}
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+}
+.nav-links li {
+    position: relative;
+    color: white;
+   
+}
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    padding: 10px 0;
+    position: relative;
+    transition: color 0.3s ease-in-out;
+}
+/* Underline effect */
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -1px;  /* Adjust distance of underline */
+    width: 0;
+    height: 3px;
+    background: white;
+    transition: all 0.3s ease-in-out;
+    transform: translateX(-50%);
+}
+/* Expand underline on hover */
+.nav-links a:hover::after {
+    width: 100%;}
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+           
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            color: #413e3e;
+        }
+
+        h2 {
+            color: #ff9800;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin: 15px 0;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            color: #f77e0e;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        textarea {
+            height: 100px;
+            resize: none;
+        }
+
+        .btn {
+            background: #ff9800;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #e68a00;
+            transform: scale(1.05);
+        }
+
+        .success-message {
+            display: none;
+            color: green;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            display: none;
+        }
+        .background-clip{
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+     <!-- Nav bar  starts-->
+     <nav class="navbar">
+        <a href="#" class="logo">
+			<img src="sun.png" alt="" class="weather-logo"><p>TempTrend</p></a>
+
+			<ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hourly.html">Hourly</a></li>
+            <li><a href="weekly.html">Weekly</a></li>
+            <li><a href="about.html">About</a></li>
+			<li><a href="#">Contact</a></li>
+        </ul>
+	</nav>
+	<!-- Nav bar ends -->
+    <video autoplay loop muted plays-inline class="background-clip">
+		<source src="home-baground.mp4" type="video/mp4">
+	</video>
+    <div class="container">
+        <h2>Contact Us</h2>
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" placeholder="Enter your name">
+                <span class="error-message" id="nameError">Name is required!</span>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Your Email</label>
+                <input type="email" id="email" placeholder="Enter your email">
+                <span class="error-message" id="emailError">Valid email is required!</span>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Your Message</label>
+                <textarea id="message" placeholder="Write your message..."></textarea>
+                <span class="error-message" id="messageError">Message cannot be empty!</span>
+            </div>
+
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+        <p class="success-message" id="successMessage">✅ Message sent successfully!</p>
+    </div>
+
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            let valid = true;
+
+            // Name Validation
+            const name = document.getElementById("name").value.trim();
+            if (name === "") {
+                document.getElementById("nameError").style.display = "block";
+                valid = false;
+            } else {
+                document.getElementById("nameError").style.display = "none";
+            }
+
+            // Email Validation
+            const email = document.getElementById("email").value.trim();
+            const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+            if (!email.match(emailPattern)) {
+                document.getElementById("emailError").style.display = "block";
+                valid = false;
+            } else {
+                document.getElementById("emailError").style.display = "none";
+            }
+
+            // Message Validation
+            const message = document.getElementById("message").value.trim();
+            if (message === "") {
+                document.getElementById("messageError").style.display = "block";
+                valid = false;
+            } else {
+                document.getElementById("messageError").style.display = "none";
+            }
+
+            // If all fields are valid
+            if (valid) {
+                document.getElementById("successMessage").style.display = "block";
+                document.getElementById("contactForm").reset(); // Reset form after submission
+                setTimeout(() => {
+                    document.getElementById("successMessage").style.display = "none";
+                }, 5000); // Hide success message after 3 seconds
+            }
+        });
+    </script>
+</body>
+</html>
