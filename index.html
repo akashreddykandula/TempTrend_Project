@@ -161,6 +161,24 @@ main {
 @keyframes blink {
     50% { border-color: transparent; }
 }
+
+
+/* Initial transition state 
+ .page-transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    transform: translateX(-100%);
+    transition: transform 0.8s ease-in-out;
+}
+
+Active state 
+ .page-transition.active {
+    transform: translateY(0);
+} */ 
 	</style>
 </head>
 <body>
@@ -202,14 +220,14 @@ main {
  <!-- javascript starts -->
   <script>
 	const apiKey = "f00c38e0279b7bc85480c3fe775d518c";  // Replace with your OpenWeatherMap API key
-const city = "Chebrolu"; // Default city (Change as needed)
-const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
 
-async function fetchWeather() {
+async function fetchWeather(lat, lon) {
     try {
+        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
         const response = await fetch(apiUrl);
         const data = await response.json();
-        // Extract weather details
+
+        // Extract weather details and update the UI
         document.getElementById("city").innerText = data.name;
         document.getElementById("temperature").innerText = `${data.main.temp}°C`;
         document.getElementById("condition").innerText = data.weather[0].description;
@@ -219,12 +237,49 @@ async function fetchWeather() {
     }
 }
 
+function getUserLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const { latitude, longitude } = position.coords;
+                fetchWeather(latitude, longitude);
+            },
+            (error) => {
+                console.error("Geolocation error:", error);
+                document.getElementById("city").innerText = "Location access denied";
+            }
+        );
+    } else {
+        console.error("Geolocation is not supported by this browser.");
+        document.getElementById("city").innerText = "Geolocation not supported";
+    }
+}
+
 // Fetch weather when the page loads
-fetchWeather();
 document.addEventListener("DOMContentLoaded", function() {
-        const heading = document.querySelector(".typewriter");
+    getUserLocation();
+
+    // Typewriter effect styling
+    const heading = document.querySelector(".typewriter");
+    if (heading) {
         heading.style.width = "50%";
-    });
+    }
+});
+
+
+// // Transition effext
+//     document.querySelectorAll("a").forEach(link => {
+//     link.addEventListener("click", function(event) {
+//         event.preventDefault();
+        
+//         const href = this.getAttribute("href");
+//         document.body.classList.add("page-transition");
+
+//         setTimeout(() => {
+//             window.location.href = href;
+//         }, 300); // Wait for animation to finish
+//     });
+// });
   </script>
   <!-- java script ends -->
 </body>
