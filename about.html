@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us| TempTrend🔆</title>
+    <link rel="icons" href="sun.png">
     <style>
           	@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
         body {
@@ -99,6 +100,7 @@
         h2, h3 {
             color: #ff9800;
         }
+        
         p {
             color: #e9e2e2;
             line-height: 1.6;
@@ -148,8 +150,8 @@
             top: 100vh;
         }
         .footer {
-            margin-top: 80px;
-            padding: 14px ;
+            margin-top: 10px;
+            padding-bottom:  1px ;
             backdrop-filter: blur(10px);
             color: white;
             border-radius: 5px;
@@ -173,10 +175,40 @@
             display: inline-block;
         }
         h4{
-            color: #056121;
-            text-decoration: underline;
+            color: #e2ff3b;
         }
-
+       .Tcontainer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .card {
+            width: 285px;
+            border: 1px solid #9e9b9b;
+            border-radius: 10px;
+            /* background: #fff; */
+            text-align: center;
+            overflow: hidden;
+            box-shadow: 4px 4px 6px rgba(17, 17, 17, 0.2);
+            
+        }
+        .card img {
+            width: 100%;
+            height: 170px;
+            object-fit: cover;
+        }
+        .card h2 {
+            margin: 10px 0;
+            font-size: 20px;
+        }
+        .card p {
+            padding: 10px;
+            font-size: 16px;
+        }
+        .Tpara{
+            color: #ffffff;
+        }
     </style>
 </head>
 <body>
@@ -218,15 +250,34 @@
         
         <div class="team-section">
             <h2>Meet Our Team</h2>
-            <p>Our dedicated team of developers and weather enthusiasts work tirelessly to provide the best experience for users. We continuously update our system to improve accuracy and enhance user experience.</p>
-            <h4>Akash Reddy - Lead Developer</h4>
-            <p>Akash is responsible for building the frontend and backend of the application, ensuring smooth user experience and data integration.</p>
-            <h4>Gokul Santhosh - UI/UX Designer</h4>
-            <p>Gokul Santhosh focuses on making the application visually appealing and user-friendly with an intuitive design.</p>
-            <h4>Vyshnavi - Backend Engineer</h4>
-            <p>Vyshnavi works on API integrations and database management to ensure accurate real-time weather updates.</p>
-            <h4>Dhavalika - Data Analyst</h4>
-            <p>Dhavalika analyzes weather trends and optimizes the data processing for better accuracy and insights.</p>
+            <p style="color: #333;">Our dedicated team of developers and weather enthusiasts work tirelessly to provide the best experience for users. We continuously update our system to improve accuracy and enhance user experience.</p>
+            
+            <!-- team cards -->
+            <div class="Tcontainer">
+                <div class="card">
+                    <img src="./20250115-IMG_20250114_141348.jpg" alt="Image">
+                    <h4>Akash Reddy <br>Lead Developer <br>24HU5A0511</h4>
+                    <p class="Tpara">Akash Reddy is responsible for building the frontend and backend of the application, ensuring smooth user experience and data integration.</p>
+                </div>
+                <div class="card">
+                    <img src="./gokulimg1.jpg" alt="Image">
+                    <h4>Gokul Santhosh <br> Web Designer<br>23HU1A0539</h4>
+                    <p class="Tpara">Gokul Santhosh focuses on making the application visually appealing and user-friendly with an intuitive design.</p>
+                </div>
+                <div class="card">
+                    <img src="./vyshnaviimg.jpg" alt="Image">
+                    <h4>Vyshnavi <br> Report Writer<br>23HU1A0509</h4>
+                    <p class="Tpara">Vyshnavi works on API integrations report and database management to ensure accurate real-time weather updates.</p>
+                </div>
+                <div class="card">
+                    <img src="./dhavalikaimg.jpg" alt="Image">
+                    <h4>Dhavalika <br> project Analyst<br>23HU1A0538</h4>
+                    <p class="Tpara">Dhavalika analyzes weather trends and optimizes the data processing for better accuracy and insights.</p>
+                </div>
+             
+                </div>
+
+
             <p>Thank you for using our app. Stay informed, stay safe, and plan your days with confidence!</p>
         </div>
         <div class="footer">
@@ -244,5 +295,9 @@
         </div>
      
     </div>
+
+    <script>
+
+    </script>
 </body>
 </html>
