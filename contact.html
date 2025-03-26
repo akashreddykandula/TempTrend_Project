@@ -12,7 +12,8 @@
             text-align: center;
             /* padding: 20px; */
             margin: 0;
-            padding: 0;
+            padding: 0
+            ;
         }
         .weather-logo{
     height: 50px;
@@ -90,6 +91,7 @@
         .container {
             max-width: 500px;
             margin: auto;
+           
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
@@ -160,7 +162,6 @@
             bottom: 0;
             z-index: -1;
         }
-
     </style>
 </head>
 <body>
@@ -206,25 +207,24 @@
         </form>
         <p class="success-message" id="successMessage">✅ Message sent successfully!</p>
     </div>
-    
 
     <script>
         document.getElementById("contactForm").addEventListener("submit", function(event) {
             event.preventDefault(); // Prevent default form submission
-        
+
             let valid = true;
-        
+
+            // Name Validation
             const name = document.getElementById("name").value.trim();
-            const email = document.getElementById("email").value.trim();
-            const message = document.getElementById("message").value.trim();
-        
             if (name === "") {
                 document.getElementById("nameError").style.display = "block";
                 valid = false;
             } else {
                 document.getElementById("nameError").style.display = "none";
             }
-        
+
+            // Email Validation
+            const email = document.getElementById("email").value.trim();
             const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
             if (!email.match(emailPattern)) {
                 document.getElementById("emailError").style.display = "block";
@@ -232,72 +232,25 @@
             } else {
                 document.getElementById("emailError").style.display = "none";
             }
-        
+
+            // Message Validation
+            const message = document.getElementById("message").value.trim();
             if (message === "") {
                 document.getElementById("messageError").style.display = "block";
                 valid = false;
             } else {
                 document.getElementById("messageError").style.display = "none";
             }
-        
+
+            // If all fields are valid
             if (valid) {
-                const newMessage = {
-                    name,
-                    email,
-                    message,
-                    timestamp: new Date().toLocaleString(),
-                };
-        
-                // Store in localStorage
-                const storedMessages = JSON.parse(localStorage.getItem("messages")) || [];
-                storedMessages.push(newMessage);
-                localStorage.setItem("messages", JSON.stringify(storedMessages));
-        
-                // Display the message
-                displayMessages();
-        
-                // Show success message
-                document.getElementById("successMessage").innerText = "✅ Message sent successfully!";
                 document.getElementById("successMessage").style.display = "block";
-        
-                // Send to server
-                fetch("http://localhost:3000/saveContact", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(newMessage),
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log("Server response:", data);
-                })
-                .catch(error => console.error("Error:", error));
-                // Reset form fields
-                document.getElementById("contactForm").reset();
-                // Hide success message after 5 seconds
+                document.getElementById("contactForm").reset(); // Reset form after submission
                 setTimeout(() => {
                     document.getElementById("successMessage").style.display = "none";
-                }, 5000);
+                }, 5000); // Hide success message after 3 seconds
             }
         });
-        // Function to display stored messages
-        function displayMessages() {
-            const messagesContainer = document.getElementById("messagesContainer");
-            messagesContainer.innerHTML = ""; // Clear previous messages
-            const storedMessages = JSON.parse(localStorage.getItem("messages")) || [];
-            storedMessages.forEach(msg => {
-                const messageDiv = document.createElement("div");
-                messageDiv.classList.add("message-box");
-                messageDiv.innerHTML = `
-                    <p><strong>${msg.name}</strong> (${msg.email})</p>
-                    <p>${msg.message}</p>
-                    <p><small>${msg.timestamp}</small></p>
-                    <hr>
-                `;
-                messagesContainer.appendChild(messageDiv);
-            });
-        }
-        // Load messages on page load
-        window.onload = displayMessages;
-        </script>
+    </script>
 </body>
 </html>
