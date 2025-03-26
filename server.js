@@ -7,43 +7,51 @@ const app = express();
 const PORT = 3000;
 
 // Middleware
-app.use(cors());  // Allows requests from frontend
-app.use(bodyParser.json());  // Parses JSON data
+app.use(cors());
+app.use(bodyParser.json());
+
+// Path to the JSON file
+const filePath = "contactData.json";
 
 // Route to handle contact form submissions
 app.post("/saveContact", (req, res) => {
     const { name, email, message } = req.body;
-    
+
     if (!name || !email || !message) {
         return res.status(400).json({ error: "All fields are required" });
     }
 
-    const contactData = {
+    const newEntry = {
         name,
         email,
         message,
         timestamp: new Date().toLocaleString(),
     };
 
-    const filePath = "contactData.json";
-
-    // Read existing data or create an empty array
+    // Read existing data or initialize an empty array
     let contacts = [];
     if (fs.existsSync(filePath)) {
-        const existingData = fs.readFileSync(filePath);
-        contacts = JSON.parse(existingData);
+        try {
+            const fileData = fs.readFileSync(filePath, "utf8");
+            contacts = JSON.parse(fileData);
+        } catch (error) {
+            console.error("Error reading JSON file:", error);
+            contacts = [];
+        }
     }
 
-    // Append new data
-    contacts.push(contactData);
-    
-    // Save to JSON file
+    // Add new entry to the list
+    contacts.push(newEntry);
+
+    // Save back to the JSON file
     fs.writeFileSync(filePath, JSON.stringify(contacts, null, 2));
 
-    res.json({ success: "Data saved successfully!" });
+    console.log("✅ New message saved:", newEntry);
+
+    res.json({ success: "Message saved successfully!" });
 });
 
-// Start server
+// Start the server
 app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+    console.log(`Server running at http://localhost:${PORT}`);
 });
