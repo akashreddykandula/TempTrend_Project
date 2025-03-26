@@ -211,20 +211,22 @@
     <script>
         document.getElementById("contactForm").addEventListener("submit", function(event) {
             event.preventDefault(); // Prevent default form submission
-
+        
             let valid = true;
-
-            // Name Validation
+        
             const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const message = document.getElementById("message").value.trim();
+        
+            console.log("Form Submitted:", { name, email, message });
+        
             if (name === "") {
                 document.getElementById("nameError").style.display = "block";
                 valid = false;
             } else {
                 document.getElementById("nameError").style.display = "none";
             }
-
-            // Email Validation
-            const email = document.getElementById("email").value.trim();
+        
             const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
             if (!email.match(emailPattern)) {
                 document.getElementById("emailError").style.display = "block";
@@ -232,25 +234,77 @@
             } else {
                 document.getElementById("emailError").style.display = "none";
             }
-
-            // Message Validation
-            const message = document.getElementById("message").value.trim();
+        
             if (message === "") {
                 document.getElementById("messageError").style.display = "block";
                 valid = false;
             } else {
                 document.getElementById("messageError").style.display = "none";
             }
-
-            // If all fields are valid
+        
             if (valid) {
-                document.getElementById("successMessage").style.display = "block";
-                document.getElementById("contactForm").reset(); // Reset form after submission
+                const newMessage = {
+                    name,
+                    email,
+                    message,
+                    timestamp: new Date().toLocaleString(),
+                };
+        
+                console.log("Message is valid. Sending to server...");
+        
+                // Send data to the server to save in a file
+                fetch("http://localhost:3000/saveContact", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(newMessage),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Server response:", data);
+                    document.getElementById("successMessage").innerText = "✅ Message saved successfully!";
+                    document.getElementById("successMessage").style.display = "block";
+                })
+                .catch(error => console.error("Error:", error));
+        
+                // Reset form fields
+                document.getElementById("contactForm").reset();
+        
+                // Hide success message after 5 seconds
                 setTimeout(() => {
                     document.getElementById("successMessage").style.display = "none";
-                }, 5000); // Hide success message after 3 seconds
+                }, 5000);
             }
         });
-    </script>
+
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    // if (!name || !email || !message) {
+    //     alert("All fields are required!");
+    //     return;
+    // }
+
+    const newMessage = { name, email, message, timestamp: new Date().toLocaleString() };
+
+    fetch("http://localhost:3000/saveContact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newMessage),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("Server response:", data);
+        alert("✅ Message saved successfully!");
+    })
+    .catch(error => console.error("Error:", error));
+
+    document.getElementById("contactForm").reset();
+});
+        </script>
+        
 </body>
 </html>
