@@ -12,8 +12,7 @@
             text-align: center;
             /* padding: 20px; */
             margin: 0;
-            padding: 0
-            ;
+            padding: 0;
         }
         .weather-logo{
     height: 50px;
@@ -91,7 +90,6 @@
         .container {
             max-width: 500px;
             margin: auto;
-           
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
@@ -162,6 +160,23 @@
             bottom: 0;
             z-index: -1;
         }
+
+        /* Initial transition state */
+/* .page-transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    transform: translateX(-100%);
+    transition: transform 0.5s ease-in;
+}
+
+
+.page-transition.active {
+    transform: translateY(0);
+} */
     </style>
 </head>
 <body>
@@ -209,48 +224,72 @@
     </div>
 
     <script>
-        document.getElementById("contactForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevent default form submission
+      document.getElementById("contactForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent default form submission
 
-            let valid = true;
+    let valid = true;
 
-            // Name Validation
-            const name = document.getElementById("name").value.trim();
-            if (name === "") {
-                document.getElementById("nameError").style.display = "block";
-                valid = false;
-            } else {
-                document.getElementById("nameError").style.display = "none";
-            }
+    // Get form values
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const message = document.getElementById("message").value.trim();
 
-            // Email Validation
-            const email = document.getElementById("email").value.trim();
-            const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
-            if (!email.match(emailPattern)) {
-                document.getElementById("emailError").style.display = "block";
-                valid = false;
-            } else {
-                document.getElementById("emailError").style.display = "none";
-            }
+    // Validation
+    if (name === "") {
+        document.getElementById("nameError").style.display = "block";
+        valid = false;
+    } else {
+        document.getElementById("nameError").style.display = "none";
+    }
 
-            // Message Validation
-            const message = document.getElementById("message").value.trim();
-            if (message === "") {
-                document.getElementById("messageError").style.display = "block";
-                valid = false;
-            } else {
-                document.getElementById("messageError").style.display = "none";
-            }
+    const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    if (!email.match(emailPattern)) {
+        document.getElementById("emailError").style.display = "block";
+        valid = false;
+    } else {
+        document.getElementById("emailError").style.display = "none";
+    }
 
-            // If all fields are valid
-            if (valid) {
-                document.getElementById("successMessage").style.display = "block";
-                document.getElementById("contactForm").reset(); // Reset form after submission
-                setTimeout(() => {
-                    document.getElementById("successMessage").style.display = "none";
-                }, 5000); // Hide success message after 3 seconds
-            }
-        });
+    if (message === "") {
+        document.getElementById("messageError").style.display = "block";
+        valid = false;
+    } else {
+        document.getElementById("messageError").style.display = "none";
+    }
+
+    // If all fields are valid, store in Local Storage
+    if (valid) {
+        const contactData = {
+            name,
+            email,
+            message,
+            timestamp: new Date().toLocaleString()
+        };
+
+        // Retrieve existing data or initialize empty array
+        let storedContacts = JSON.parse(localStorage.getItem("contactMessages")) || [];
+
+        // Add new contact to the array
+        storedContacts.push(contactData);
+
+        // Save back to Local Storage
+        localStorage.setItem("contactMessages", JSON.stringify(storedContacts));
+
+        // Show success message
+        document.getElementById("successMessage").innerText = "✅ Message saved successfully!";
+        document.getElementById("successMessage").style.display = "block";
+        document.getElementById("contactForm").reset();
+
+        setTimeout(() => {
+            document.getElementById("successMessage").style.display = "none";
+        }, 5000);
+    }
+});
+
+
+
+let savedContacts = JSON.parse(localStorage.getItem("contactMessages")) || [];
+console.table(savedContacts); // View stored messages in console
     </script>
 </body>
 </html>
