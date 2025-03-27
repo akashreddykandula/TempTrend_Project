@@ -6,14 +6,23 @@
     <title>Contact Us | TempTrend🔆</title>
     <style>
        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+       @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
         body {
             font-family: "Poppins", sans-serif;
             background-color: #f4f4f4;
             text-align: center;
             /* padding: 20px; */
             margin: 0;
-            padding: 0
-            ;
+            padding: 0;
+            animation: fadeIn 1.2s ease-in-out;
+            animation: slideIn 1.2s ease-in-out;
         }
         .weather-logo{
     height: 50px;
@@ -304,9 +313,14 @@
 
     document.getElementById("contactForm").reset();
 });
-	    app.listen(PORT, "0.0.0.0", () => {
+app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server running on http://0.0.0.0:${PORT}`);
 });
+fetch("https://randomname.ngrok.io/saveContact", { 
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(newMessage),
+})
         </script>
         
 </body>
